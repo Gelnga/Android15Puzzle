@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
-
+        // test
         val boardJson = sharedPref.getString("state",null)
         if (boardJson != null) {
             brain.restoreBoardFromJson(boardJson)
