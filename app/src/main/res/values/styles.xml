@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="UI_buttons" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">0sp</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:backgroundTint">@color/playbutton</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="statistics_text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="game_board_buttons" parent="Widget.AppCompat.ImageButton">
+        <item name="android:padding">0dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_margin">0.75dp</item>
+        <item name="android:backgroundTint">#00FFFFFF</item>
+    </style>
+</resources>

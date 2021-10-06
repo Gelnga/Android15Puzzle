@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#93D16B">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageGameButton00"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle00"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton10"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton01"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton01"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle01"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton11"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton02"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton00"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton02"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle02"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton12"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton03"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton01"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton03"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle03"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton02"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton10"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle10"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton20"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton11"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton00" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton11"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle11"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton21"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton12"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton10"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton01" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton12"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle12"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton22"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton13"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton11"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton02" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton13"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle13"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton12"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton03" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton20"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle20"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton30"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton21"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton10" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton21"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle21"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton31"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton22"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton20"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton11" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton22"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle22"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton32"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton23"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton21"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton12" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton23"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle23"
+            app:layout_constraintBottom_toTopOf="@+id/imageGameButton33"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton22"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton13" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton30"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton31"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton20" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton31"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle31"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton32"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton30"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton21" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton32"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            android:src="@drawable/puzzle32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageGameButton33"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton31"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton22" />
+
+        <ImageButton
+            android:id="@+id/imageGameButton33"
+            style="@style/game_board_buttons"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:onClick="gameBoardButtonOnClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imageGameButton32"
+            app:layout_constraintTop_toBottomOf="@+id/imageGameButton23" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
