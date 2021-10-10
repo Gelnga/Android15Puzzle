@@ -106,6 +106,7 @@ class GameBrain {
         _moves = 0
         _time = 0
         _previousMoves = Stack<String>()
+        _win = false
         shuffle()
     }
 

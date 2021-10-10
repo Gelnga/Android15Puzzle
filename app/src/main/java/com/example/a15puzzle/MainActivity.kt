@@ -5,18 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
+import android.widget.ArrayAdapter
 
 class MainActivity : AppCompatActivity() {
-
     private val brain = GameBrain()
+    private lateinit var repository: GameRepository
 
     private val handler: Handler = Handler(Looper.getMainLooper())
 
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        repository = GameRepository(applicationContext)
         setContentView(R.layout.activity_main)
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
@@ -100,16 +100,66 @@ class MainActivity : AppCompatActivity() {
         movesText.text = brain.getMoves().toString()
     }
 
-    fun undo(view: android.view.View) {
+    fun undo(view: View) {
         brain.undo()
         updateUI()
     }
 
-    fun newGame(view: android.view.View) {
+    fun newGame(view: View) {
         findViewById<ImageView>(R.id.imageViewWin).visibility = View.INVISIBLE
         brain.newGame()
         updateUI()
         startCounting()
+    }
+
+    fun saveGame(view: View) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Enter save name")
+        val input = EditText(this)
+
+        input.inputType = InputType.TYPE_CLASS_TEXT
+        builder.setView(input)
+
+        var gameName = ""
+        builder.setPositiveButton("OK") { _, _ ->
+            repository.open()
+            gameName = input.text.toString()
+            repository.saveGame(gameName, brain.getGameJson())
+            repository.close()}
+
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
+        builder.show()
+    }
+
+    fun loadGame(view: View) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Choose saved game")
+
+        repository.open()
+        val saves = repository.getSavedGames()
+        repository.close()
+
+        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice)
+        for (save in saves.keys) {
+            arrayAdapter.add(save)
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, which -> dialog.cancel() }
+
+        builder.setAdapter(arrayAdapter) { _, which ->
+            val data = arrayAdapter.getItem(which)
+            saves[data]?.let { brain.restoreGameFromJson(it) }
+            updateUI()
+        }
+        builder.show()
+
+    }
+
+    fun deleteSaves(view: View) {
+        repository.open()
+        repository.deleteSaves()
+        Toast.makeText(applicationContext, "Saves were deleted!", Toast.LENGTH_SHORT).show()
+        repository.close()
     }
 
     private fun startCounting() {
