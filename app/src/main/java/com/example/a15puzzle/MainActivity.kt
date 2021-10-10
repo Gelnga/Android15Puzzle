@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,6 +70,11 @@ class MainActivity : AppCompatActivity() {
 
         if (brain.validateMove(idStr)) {
             updateUI()
+            if (brain.getWin()) {
+                handler.removeCallbacks(run)
+                findViewById<ImageView>(R.id.imageViewWin).visibility = View.VISIBLE
+                Toast.makeText(applicationContext, "You won!", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -97,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun newGame(view: android.view.View) {
+        findViewById<ImageView>(R.id.imageViewWin).visibility = View.INVISIBLE
         brain.newGame()
         updateUI()
         startCounting()

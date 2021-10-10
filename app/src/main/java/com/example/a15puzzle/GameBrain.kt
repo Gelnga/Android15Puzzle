@@ -8,13 +8,13 @@ class GameBrain {
     private var _blankTileCurrentId = "imageGameButton33"
     private var _moves = 0
     private var _time = 0
+    private var _win = false
 
-    private var _gameBoard = arrayOf(
-        arrayOf("00", "01", "02", "03"),
-        arrayOf("10", "11", "12", "13"),
-        arrayOf("20", "21", "22", "23"),
-        arrayOf("30", "31", "32", "X"),
-    )
+    private var _completedGameBoard = createCompletedGameBoard()
+    private var _gameBoard = createCompletedGameBoard()
+    fun getWin(): Boolean {
+        return _win
+    }
 
     fun getGameBoard(): Array<Array<String>> {
         return _gameBoard
@@ -101,17 +101,12 @@ class GameBrain {
     }
 
     fun newGame() {
-        _gameBoard = arrayOf(
-            arrayOf("00", "01", "02", "03"),
-            arrayOf("10", "11", "12", "13"),
-            arrayOf("20", "21", "22", "23"),
-            arrayOf("30", "31", "32", "X"),
-        )
+        _gameBoard = createCompletedGameBoard()
         _blankTileCurrentId = "imageGameButton33"
-        shuffle()
         _moves = 0
         _time = 0
         _previousMoves = Stack<String>()
+        shuffle()
     }
 
     private fun shuffle() {
@@ -163,6 +158,10 @@ class GameBrain {
         _gameBoard[rowPressed][colPressed] = "X"
 
         _blankTileCurrentId = "imageGameButton$rowPressed$colPressed"
+
+        if (_gameBoard.contentDeepEquals(_completedGameBoard) && !_previousMoves.empty()) {
+            _win = true
+        }
     }
 
     private fun getGameButtonRow(buttonId: String): Int {
@@ -171,5 +170,19 @@ class GameBrain {
 
     private fun getGameButtonCol(buttonId: String): Int {
         return Character.getNumericValue(buttonId.split("Button")[1][1])
+    }
+
+    private fun createCompletedGameBoard(): Array<Array<String>> {
+        val completedBoard = arrayOf(
+            arrayOf("00", "01", "02", "03"),
+            arrayOf("10", "11", "12", "13"),
+            arrayOf("20", "21", "22", "23"),
+            arrayOf("30", "31", "32", "X"),
+        )
+        val completedBoardCopy: Array<Array<String>?> = arrayOfNulls(4)
+        for (x in completedBoard.indices) {
+            completedBoardCopy[x] = completedBoard[x].copyOf()
+        }
+        return completedBoard.copyOf()
     }
 }
