@@ -22,7 +22,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textViewTime"
                 style="@style/statistics_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,12 +31,14 @@
                 android:text="Time:" />
 
             <TextView
-                android:id="@+id/textView3"
-                style="@style/statistics_text"
+                android:id="@+id/textViewTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="000" />
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
 
         </LinearLayout>
 
@@ -47,7 +49,7 @@
             android:weightSum="2">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewMoves"
                 style="@style/statistics_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

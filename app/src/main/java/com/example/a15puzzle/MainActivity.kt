@@ -3,13 +3,26 @@ package com.example.a15puzzle
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 
-val brain = GameBrain()
-
 class MainActivity : AppCompatActivity() {
+
+    private val brain = GameBrain()
+
+    private val handler: Handler = Handler(Looper.getMainLooper())
+
+    private val run: Runnable = object : Runnable {
+        override fun run() {
+            findViewById<TextView>(R.id.textViewTimer).text = brain.getTime()
+            brain.incrementTime()
+            handler.postDelayed(this, 1000)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,14 +30,21 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
 
-        val boardJson = sharedPref.getString("state",null)
-        if (boardJson != null) {
-            brain.restoreBoardFromJson(boardJson)
+        val gameJson = sharedPref.getString("state",null)
+        if (gameJson != null) {
+            brain.restoreGameFromJson(gameJson)
         } else {
             brain.newGame()
         }
 
         updateUI()
+        startCounting()
+    }
+
+    override fun onResume() {
+        startCounting()
+        super.onResume()
+        Log.d("Res", "Resume")
     }
 
     override fun onStop() {
@@ -33,10 +53,12 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
 
         with (sharedPref.edit()) {
-            val jsonStr = brain.getBoardJson()
+            val jsonStr = brain.getGameJson()
             putString("state", jsonStr)
             commit()
         }
+
+        handler.removeCallbacks(run)
     }
 
     fun gameBoardButtonOnClick(view: android.view.View) {
@@ -77,5 +99,11 @@ class MainActivity : AppCompatActivity() {
     fun newGame(view: android.view.View) {
         brain.newGame()
         updateUI()
+        startCounting()
+    }
+
+    private fun startCounting() {
+        handler.removeCallbacks(run)
+        handler.post(run)
     }
 }

@@ -7,6 +7,7 @@ class GameBrain {
     private var _previousMoves = Stack<String>()
     private var _blankTileCurrentId = "imageGameButton33"
     private var _moves = 0
+    private var _time = 0
 
     private var _gameBoard = arrayOf(
         arrayOf("00", "01", "02", "03"),
@@ -19,18 +20,44 @@ class GameBrain {
         return _gameBoard
     }
 
-    fun getBoardJson(): String{
-        val jsonArray = JSONArray(_gameBoard);
-        return jsonArray.toString();
+    fun getGameJson(): String {
+        val jsonArray = JSONArray(_gameBoard)
+        val jsonPreviousMoves = JSONArray(_previousMoves)
+        return jsonArray.toString() + ";" +
+                jsonPreviousMoves.toString() + ";" +
+                _blankTileCurrentId + ";" +
+                _moves.toString() + ";" +
+                _time + ";"
     }
 
-    fun restoreBoardFromJson(boardJson: String){
-        val jsonArray = JSONArray(boardJson)
-        for (x in 0 until jsonArray.length()){
-            for (y in 0 until (jsonArray[x] as JSONArray).length()) {
-                _gameBoard[x][y] = (jsonArray[x] as JSONArray)[y] as String
+    fun getTime(): String {
+        return _time.toString()
+    }
+
+    fun incrementTime() {
+        _time++
+    }
+
+    fun restoreGameFromJson(gameJson: String) {
+        val splitJson = gameJson.split(";")
+
+        var jsonObject = JSONArray(splitJson[0])
+        for (x in 0 until jsonObject.length()){
+            for (y in 0 until (jsonObject[x] as JSONArray).length()) {
+                _gameBoard[x][y] = (jsonObject[x] as JSONArray)[y] as String
             }
         }
+
+        jsonObject = JSONArray(splitJson[1])
+        if (jsonObject.length() != 0) {
+            for (x in 0 until jsonObject.length()) {
+                _previousMoves.add(jsonObject[x] as String)
+            }
+        }
+
+        _blankTileCurrentId = splitJson[2]
+        _moves = Integer.parseInt(splitJson[3])
+        _time = Integer.parseInt(splitJson[4])
     }
 
     fun getMoves(): Int {
@@ -83,6 +110,7 @@ class GameBrain {
         _blankTileCurrentId = "imageGameButton33"
         shuffle()
         _moves = 0
+        _time = 0
         _previousMoves = Stack<String>()
     }
 
@@ -94,6 +122,7 @@ class GameBrain {
         }
     }
 
+
     private fun randomMove() {
         val random = Random()
         val rowOrCol = random.nextInt(2)
@@ -103,7 +132,6 @@ class GameBrain {
         } else {
             getGameButtonCol(_blankTileCurrentId)
         }
-
 
         var copyOfChange: Int
         while(true) {
