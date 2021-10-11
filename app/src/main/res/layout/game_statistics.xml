@@ -135,4 +135,13 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button"
+        style="@style/UI_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:onClick="showLeaderboard"
+        android:text="Leaderboard" />
+
 </LinearLayout>

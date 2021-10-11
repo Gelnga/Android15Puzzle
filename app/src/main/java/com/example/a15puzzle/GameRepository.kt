@@ -21,11 +21,7 @@ class GameRepository(private val context: Context) {
         dbHelper.close()
     }
 
-    fun deleteSaves() {
-        dbHelper.deleteSaves(db)
-    }
-
-    fun saveGame(gameName: String, gameState: String) {
+    fun saveUnfinishedGame(gameName: String, gameState: String) {
         val contentValues = ContentValues()
         val stf = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss", Locale.ENGLISH)
 
@@ -33,6 +29,16 @@ class GameRepository(private val context: Context) {
         contentValues.put(GameDbHelper.SAVE_DATE, stf.format(Calendar.getInstance().time).toString())
         contentValues.put(GameDbHelper.GAME_NAME, gameName)
         db.insert(GameDbHelper.GAME_SAVES_TABLE_NAME, null, contentValues)
+    }
+
+    fun saveFinishedGame(playerName: String, gameData: String) {
+        val splitGameData = gameData.split(";")
+        val contentValues = ContentValues()
+
+        contentValues.put(GameDbHelper.PLAYER_NAME, playerName)
+        contentValues.put(GameDbHelper.MOVES_MADE, splitGameData[3])
+        contentValues.put(GameDbHelper.TIME_SPENT, splitGameData[4])
+        db.insert(GameDbHelper.LEADERBOARD_TABLE_NAME, null, contentValues)
     }
 
     fun getSavedGames(): Map<String, String> {
@@ -49,6 +55,31 @@ class GameRepository(private val context: Context) {
         cursor.close()
 
         return saves
+    }
+
+    fun getLeaderBoard(): Array<String?> {
+        val cursor = db.query(GameDbHelper.LEADERBOARD_TABLE_NAME,
+            arrayOf(GameDbHelper.PLAYER_NAME, GameDbHelper.TIME_SPENT, GameDbHelper.MOVES_MADE),
+            null, null, null, null, GameDbHelper.MOVES_MADE)
+
+        val leaderboard = arrayOfNulls<String>(cursor.count)
+        for (x in 0 until cursor.count) {
+            cursor.moveToNext()
+            leaderboard[x] = cursor.getString(0) + ";" + cursor.getString(1) +
+                    ";" + cursor.getString(2)
+        }
+
+        cursor.close()
+
+        return leaderboard
+    }
+
+    fun deleteSaves() {
+        dbHelper.deleteSaves(db)
+    }
+
+    fun clearLeaderboard() {
+        dbHelper.clearLeaderboard(db)
     }
 
 }

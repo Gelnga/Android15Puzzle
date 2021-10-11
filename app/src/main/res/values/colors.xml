@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="playbutton">#fff6ce</color>
+    <color name="leaderbordRowBackground">#8BC34A</color>
 </resources>

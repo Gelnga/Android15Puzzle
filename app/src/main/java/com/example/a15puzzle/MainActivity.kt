@@ -1,6 +1,7 @@
 package com.example.a15puzzle
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -43,12 +44,17 @@ class MainActivity : AppCompatActivity() {
 
         updateUI()
         startCounting()
+        if (brain.getWin()) {
+            findViewById<ImageView>(R.id.imageViewWin).visibility = View.VISIBLE
+        }
     }
 
     override fun onResume() {
         startCounting()
+        if (brain.getWin()) {
+            handler.removeCallbacks(run)
+        }
         super.onResume()
-        Log.d("Res", "Resume")
     }
 
     override fun onStop() {
@@ -70,10 +76,27 @@ class MainActivity : AppCompatActivity() {
 
         if (brain.validateMove(idStr)) {
             updateUI()
+
             if (brain.getWin()) {
                 handler.removeCallbacks(run)
                 findViewById<ImageView>(R.id.imageViewWin).visibility = View.VISIBLE
                 Toast.makeText(applicationContext, "You won!", Toast.LENGTH_LONG).show()
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Enter your name")
+                val input = EditText(this)
+                input.inputType = InputType.TYPE_CLASS_TEXT
+                builder.setView(input)
+
+                var playerName: String
+                builder.setPositiveButton("OK") { _, _ ->
+                    repository.open()
+                    playerName = input.text.toString()
+                    repository.saveFinishedGame(playerName, brain.getGameJson())
+                    repository.close()
+                }
+
+                builder.show()
             }
         }
     }
@@ -116,15 +139,14 @@ class MainActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Enter save name")
         val input = EditText(this)
-
         input.inputType = InputType.TYPE_CLASS_TEXT
         builder.setView(input)
 
-        var gameName = ""
+        var gameName: String
         builder.setPositiveButton("OK") { _, _ ->
             repository.open()
             gameName = input.text.toString()
-            repository.saveGame(gameName, brain.getGameJson())
+            repository.saveUnfinishedGame(gameName, brain.getGameJson())
             repository.close()}
 
         builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
@@ -158,8 +180,13 @@ class MainActivity : AppCompatActivity() {
     fun deleteSaves(view: View) {
         repository.open()
         repository.deleteSaves()
-        Toast.makeText(applicationContext, "Saves were deleted!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "Saves were deleted", Toast.LENGTH_SHORT).show()
         repository.close()
+    }
+
+    fun showLeaderboard(view: View) {
+        val showLeaderboard = Intent(this, LeaderBoardActivity::class.java)
+        startActivity(showLeaderboard)
     }
 
     private fun startCounting() {

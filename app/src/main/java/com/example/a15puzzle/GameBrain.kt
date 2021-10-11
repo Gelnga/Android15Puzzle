@@ -12,6 +12,7 @@ class GameBrain {
 
     private var _completedGameBoard = createCompletedGameBoard()
     private var _gameBoard = createCompletedGameBoard()
+
     fun getWin(): Boolean {
         return _win
     }
@@ -27,7 +28,8 @@ class GameBrain {
                 jsonPreviousMoves.toString() + ";" +
                 _blankTileCurrentId + ";" +
                 _moves.toString() + ";" +
-                _time + ";"
+                _time + ";" +
+                _win
     }
 
     fun getTime(): String {
@@ -58,6 +60,7 @@ class GameBrain {
         _blankTileCurrentId = splitJson[2]
         _moves = Integer.parseInt(splitJson[3])
         _time = Integer.parseInt(splitJson[4])
+        _win = splitJson[5] == "true"
     }
 
     fun getMoves(): Int {
@@ -111,7 +114,7 @@ class GameBrain {
     }
 
     private fun shuffle() {
-        var i = 100
+        var i = 2
         while (i > 0) {
             randomMove()
             i--
