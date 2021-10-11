@@ -59,7 +59,7 @@ class LeaderBoardActivity : AppCompatActivity() {
 
 
             val movesMade = TextView(this)
-            movesMade.text = splitGame[1] + " Secs."
+            movesMade.text = splitGame[1] + " Sec."
             movesMade.textSize = 20.toFloat()
             movesMade.setTextColor(Color.BLACK)
             movesMade.gravity = Gravity.CENTER

@@ -114,7 +114,7 @@ class GameBrain {
     }
 
     private fun shuffle() {
-        var i = 2
+        var i = 100
         while (i > 0) {
             randomMove()
             i--

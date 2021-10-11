@@ -119,8 +119,10 @@ class MainActivity : AppCompatActivity() {
                 button.setImageDrawable(ResourcesCompat.getDrawable(resources, imageId, null))
             }
         }
-        val movesText = findViewById<TextView>(R.id.textViewMovesMade)
-        movesText.text = brain.getMoves().toString()
+        var textViewPlaceholder = findViewById<TextView>(R.id.textViewMovesMade)
+        textViewPlaceholder.text = brain.getMoves().toString()
+        textViewPlaceholder = findViewById<TextView>(R.id.textViewTimer)
+        textViewPlaceholder.text = brain.getTime()
     }
 
     fun undo(view: View) {
