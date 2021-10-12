@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         }
         var textViewPlaceholder = findViewById<TextView>(R.id.textViewMovesMade)
         textViewPlaceholder.text = brain.getMoves().toString()
-        textViewPlaceholder = findViewById<TextView>(R.id.textViewTimer)
+        textViewPlaceholder = findViewById(R.id.textViewTimer)
         textViewPlaceholder.text = brain.getTime()
     }
 
@@ -173,6 +173,8 @@ class MainActivity : AppCompatActivity() {
         builder.setAdapter(arrayAdapter) { _, which ->
             val data = arrayAdapter.getItem(which)
             saves[data]?.let { brain.restoreGameFromJson(it) }
+            findViewById<ImageView>(R.id.imageViewWin).visibility = View.INVISIBLE
+            startCounting()
             updateUI()
         }
         builder.show()

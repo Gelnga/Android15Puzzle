@@ -38,7 +38,7 @@ class LeaderBoardActivity : AppCompatActivity() {
             tableRow.setBackgroundColor(ContextCompat
                 .getColor(applicationContext, R.color.leaderbordRowBackground))
             tableRow.setPadding(2)
-            tableRow.weightSum = 7.toFloat()
+            tableRow.weightSum = 6.toFloat()
             tableRow.gravity = Gravity.CENTER
             tableRow.layoutParams = TableRow.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT,
@@ -51,7 +51,7 @@ class LeaderBoardActivity : AppCompatActivity() {
             nickNames.setTextColor(Color.BLACK)
             nickNames.gravity = Gravity.CENTER
             nickNames.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
+                0,
                 TableRow.LayoutParams.WRAP_CONTENT,
                 2f
             )
@@ -64,7 +64,7 @@ class LeaderBoardActivity : AppCompatActivity() {
             movesMade.setTextColor(Color.BLACK)
             movesMade.gravity = Gravity.CENTER
             movesMade.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
+                0,
                 TableRow.LayoutParams.WRAP_CONTENT,
                 2f
             )
@@ -76,14 +76,14 @@ class LeaderBoardActivity : AppCompatActivity() {
             timeSpent.setTextColor(Color.BLACK)
             timeSpent.gravity = Gravity.CENTER
             timeSpent.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
+                0,
                 TableRow.LayoutParams.WRAP_CONTENT,
                 2f
             )
             tableRow.addView(timeSpent)
 
             tl.addView(tableRow, TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.MATCH_PARENT,  //part4
+                    TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT,
                 )
             )
