@@ -38,7 +38,7 @@ class GameDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                     "$GAME_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "$PLAYER_NAME TEXT NOT NULL, " +
                     "$TIME_SPENT TEXT NOT NULL, " +
-                    "$MOVES_MADE TEXT NOT NULL);"
+                    "$MOVES_MADE INTEGER NOT NULL);"
 
         const val SQL_DELETE_LEADERBOARD_TABLES = "DROP TABLE IF EXISTS $LEADERBOARD_TABLE_NAME"
     }

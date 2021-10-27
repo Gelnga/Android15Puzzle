@@ -25,11 +25,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="#8BC34A"
         android:orientation="horizontal"
         android:padding="2dp"
-        android:weightSum="6"
+        android:weightSum="14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLeaderBoard">
@@ -38,7 +38,7 @@
             android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:gravity="center"
             android:text="Player name"
             android:textColor="#000000"
@@ -47,8 +47,8 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
             android:gravity="center"
             android:text="Time spent"
             android:textColor="#000000"
@@ -58,7 +58,7 @@
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:gravity="center"
             android:text="Moves made"
             android:textColor="#000000"
@@ -88,21 +88,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLeaderBoardData"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonClearLeaderboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TableLayout
-            android:id="@+id/tableLayoutLeaderboad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="90" />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

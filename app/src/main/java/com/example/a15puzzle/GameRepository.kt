@@ -36,7 +36,7 @@ class GameRepository(private val context: Context) {
         val contentValues = ContentValues()
 
         contentValues.put(GameDbHelper.PLAYER_NAME, playerName)
-        contentValues.put(GameDbHelper.MOVES_MADE, splitGameData[3])
+        contentValues.put(GameDbHelper.MOVES_MADE, splitGameData[3].toInt())
         contentValues.put(GameDbHelper.TIME_SPENT, splitGameData[4])
         db.insert(GameDbHelper.LEADERBOARD_TABLE_NAME, null, contentValues)
     }
@@ -58,15 +58,14 @@ class GameRepository(private val context: Context) {
     }
 
     fun getLeaderBoard(): Array<String?> {
-        val cursor = db.query(GameDbHelper.LEADERBOARD_TABLE_NAME,
-            arrayOf(GameDbHelper.PLAYER_NAME, GameDbHelper.TIME_SPENT, GameDbHelper.MOVES_MADE),
-            null, null, null, null, GameDbHelper.MOVES_MADE)
+        val cursor = db.query(GameDbHelper.LEADERBOARD_TABLE_NAME, null,
+            null, null, null, null, "${GameDbHelper.MOVES_MADE} ASC")
 
         val leaderboard = arrayOfNulls<String>(cursor.count)
         for (x in 0 until cursor.count) {
             cursor.moveToNext()
             leaderboard[x] = cursor.getString(0) + ";" + cursor.getString(1) +
-                    ";" + cursor.getString(2)
+                    ";" + cursor.getString(2) + ";" + cursor.getString(3)
         }
 
         cursor.close()
@@ -82,4 +81,7 @@ class GameRepository(private val context: Context) {
         dbHelper.clearLeaderboard(db)
     }
 
+    fun deleteLeader(leader: String) {
+        db.delete(GameDbHelper.LEADERBOARD_TABLE_NAME, "_id=?", arrayOf(leader))
+    }
 }

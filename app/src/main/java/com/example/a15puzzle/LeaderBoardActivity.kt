@@ -1,93 +1,43 @@
 package com.example.a15puzzle
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.setPadding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class LeaderBoardActivity : AppCompatActivity() {
 
     private lateinit var repository: GameRepository
+    private lateinit var recyclerViewLeaderBoardData: RecyclerView
+    private lateinit var adapter: LeaderBoardDataRecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
 
         repository = GameRepository(applicationContext)
-        createTable()
-    }
+            .open()
+        recyclerViewLeaderBoardData = findViewById(R.id.recyclerViewLeaderBoardData)
 
-    private fun createTable() {
-        val tl = findViewById<TableLayout>(R.id.tableLayoutLeaderboad)
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;24;73;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;56;58;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;12;95;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;215;78;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;35;45;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;74;124;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;257;245;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;31;109;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;64;33;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;73;25;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;32;30;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;73;15;true")
+        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;12;20;true")
 
-        repository.open()
-        val leaderboard = repository.getLeaderBoard()
-        repository.close()
-
-        for (game in leaderboard) {
-            val splitGame = game!!.split(";")
-
-            val tableRow = TableRow(this)
-            tableRow.setBackgroundColor(ContextCompat
-                .getColor(applicationContext, R.color.leaderbordRowBackground))
-            tableRow.setPadding(2)
-            tableRow.weightSum = 6.toFloat()
-            tableRow.gravity = Gravity.CENTER
-            tableRow.layoutParams = TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-            )
-
-            val nickNames = TextView(this)
-            nickNames.text = splitGame[0]
-            nickNames.textSize = 20.toFloat()
-            nickNames.setTextColor(Color.BLACK)
-            nickNames.gravity = Gravity.CENTER
-            nickNames.layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                2f
-            )
-            tableRow.addView(nickNames)
-
-
-            val movesMade = TextView(this)
-            movesMade.text = splitGame[1] + " Sec."
-            movesMade.textSize = 20.toFloat()
-            movesMade.setTextColor(Color.BLACK)
-            movesMade.gravity = Gravity.CENTER
-            movesMade.layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                2f
-            )
-            tableRow.addView(movesMade)
-
-            val timeSpent = TextView(this)
-            timeSpent.text = splitGame[2]
-            timeSpent.textSize = 20.toFloat()
-            timeSpent.setTextColor(Color.BLACK)
-            timeSpent.gravity = Gravity.CENTER
-            timeSpent.layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                2f
-            )
-            tableRow.addView(timeSpent)
-
-            tl.addView(tableRow, TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.MATCH_PARENT,
-                    TableLayout.LayoutParams.WRAP_CONTENT,
-                )
-            )
-        }
+        recyclerViewLeaderBoardData.layoutManager = LinearLayoutManager(this)
+        adapter = LeaderBoardDataRecyclerView(this, repository)
+        recyclerViewLeaderBoardData.adapter = adapter
     }
 
     fun finishActivity(view: View) {
@@ -95,20 +45,14 @@ class LeaderBoardActivity : AppCompatActivity() {
     }
 
     fun clearLeaderBoard(view: View) {
-        repository.open()
         repository.clearLeaderboard()
         Toast.makeText(applicationContext, "Leaderboard was cleared", Toast.LENGTH_SHORT).show()
-        repository.close()
-        clearTable()
+        adapter.notifyItemRangeRemoved(0, adapter.itemCount)
+        adapter.refreshData()
     }
 
-    private fun clearTable() {
-        val tl = findViewById<TableLayout>(R.id.tableLayoutLeaderboad)
-
-        val childCount = tl.childCount
-
-        if (childCount > 1) {
-            tl.removeViews(1, childCount - 1)
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        repository.close()
     }
 }
