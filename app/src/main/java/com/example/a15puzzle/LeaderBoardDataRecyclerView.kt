@@ -44,8 +44,9 @@ class LeaderBoardDataRecyclerView(val context: Context, val repo: GameRepository
         val imageButtonDeleteLeader = holder.itemView.findViewById<ImageButton>(R.id.imageButtonDeleteLeader)
         imageButtonDeleteLeader.setOnClickListener {
             repo.deleteLeader(leaderBoardData[0])
-            this.notifyItemRemoved(holder.layoutPosition)
             refreshData()
+            this.notifyItemRemoved(holder.layoutPosition)
+            this.notifyItemRangeChanged(0, dataSet.size)
         }
     }
 

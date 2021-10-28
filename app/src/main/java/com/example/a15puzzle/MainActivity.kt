@@ -92,7 +92,8 @@ class MainActivity : AppCompatActivity() {
                 builder.setPositiveButton("OK") { _, _ ->
                     repository.open()
                     playerName = input.text.toString()
-                    repository.saveFinishedGame(playerName, brain.getGameJson())
+                    val gameData = brain.getGameJson().split(";")
+                    repository.saveFinishedGame(playerName, gameData[3].toInt(), gameData[4])
                     repository.close()
                 }
 

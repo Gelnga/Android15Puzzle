@@ -31,13 +31,12 @@ class GameRepository(private val context: Context) {
         db.insert(GameDbHelper.GAME_SAVES_TABLE_NAME, null, contentValues)
     }
 
-    fun saveFinishedGame(playerName: String, gameData: String) {
-        val splitGameData = gameData.split(";")
+    fun saveFinishedGame(playerName: String, movesMade: Int, timeSpent: String) {
         val contentValues = ContentValues()
 
         contentValues.put(GameDbHelper.PLAYER_NAME, playerName)
-        contentValues.put(GameDbHelper.MOVES_MADE, splitGameData[3].toInt())
-        contentValues.put(GameDbHelper.TIME_SPENT, splitGameData[4])
+        contentValues.put(GameDbHelper.MOVES_MADE, movesMade)
+        contentValues.put(GameDbHelper.TIME_SPENT, timeSpent)
         db.insert(GameDbHelper.LEADERBOARD_TABLE_NAME, null, contentValues)
     }
 

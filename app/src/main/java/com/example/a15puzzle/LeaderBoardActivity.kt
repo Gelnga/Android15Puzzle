@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.random.Random
 
 class LeaderBoardActivity : AppCompatActivity() {
 
@@ -21,19 +22,19 @@ class LeaderBoardActivity : AppCompatActivity() {
             .open()
         recyclerViewLeaderBoardData = findViewById(R.id.recyclerViewLeaderBoardData)
 
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;24;73;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;56;58;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;12;95;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;215;78;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;35;45;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;74;124;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;257;245;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;31;109;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;64;33;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;73;25;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;32;30;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;73;15;true")
-        repository.saveFinishedGame("Laros", "[[\"00\",\"01\",\"02\",\"03\"],[\"10\",\"11\",\"12\",\"13\"],[\"20\",\"21\",\"22\",\"23\"],[\"30\",\"31\",\"32\",\"X\"]];[\"imageGameButton33\",\"imageGameButton23\"];imageGameButton33;12;20;true")
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
 
         recyclerViewLeaderBoardData.layoutManager = LinearLayoutManager(this)
         adapter = LeaderBoardDataRecyclerView(this, repository)

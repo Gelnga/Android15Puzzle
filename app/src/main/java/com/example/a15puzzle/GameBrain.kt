@@ -22,9 +22,9 @@ class GameBrain {
     }
 
     fun getGameJson(): String {
-        val jsonArray = JSONArray(_gameBoard)
+        val jsonArrayGameBoard = JSONArray(_gameBoard)
         val jsonPreviousMoves = JSONArray(_previousMoves)
-        return jsonArray.toString() + ";" +
+        return jsonArrayGameBoard.toString() + ";" +
                 jsonPreviousMoves.toString() + ";" +
                 _blankTileCurrentId + ";" +
                 _moves.toString() + ";" +
