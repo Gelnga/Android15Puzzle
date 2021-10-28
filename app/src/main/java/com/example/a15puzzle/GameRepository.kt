@@ -43,7 +43,11 @@ class GameRepository(private val context: Context) {
     fun getSavedGames(): Map<String, String> {
         val cursor = db.query(GameDbHelper.GAME_SAVES_TABLE_NAME,
             arrayOf(GameDbHelper.SAVED_STATE, GameDbHelper.GAME_NAME, GameDbHelper.SAVE_DATE),
-        null, null, null, null, GameDbHelper.SAVED_GAME_ID)
+            null,
+            null,
+            null,
+            null,
+            GameDbHelper.SAVED_GAME_ID)
 
         val saves = mutableMapOf<String, String>()
         while (cursor.moveToNext()) {
@@ -57,14 +61,21 @@ class GameRepository(private val context: Context) {
     }
 
     fun getLeaderBoard(): Array<String?> {
-        val cursor = db.query(GameDbHelper.LEADERBOARD_TABLE_NAME, null,
-            null, null, null, null, "${GameDbHelper.MOVES_MADE} ASC")
+        val cursor = db.query(GameDbHelper.LEADERBOARD_TABLE_NAME,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "${GameDbHelper.MOVES_MADE} ASC")
 
         val leaderboard = arrayOfNulls<String>(cursor.count)
         for (x in 0 until cursor.count) {
             cursor.moveToNext()
-            leaderboard[x] = cursor.getString(0) + ";" + cursor.getString(1) +
-                    ";" + cursor.getString(2) + ";" + cursor.getString(3)
+            leaderboard[x] = cursor.getString(0) + ";" +
+                        cursor.getString(1) + ";" +
+                        cursor.getString(2) + ";" +
+                        cursor.getString(3)
         }
 
         cursor.close()

@@ -22,19 +22,13 @@ class LeaderBoardActivity : AppCompatActivity() {
             .open()
         recyclerViewLeaderBoardData = findViewById(R.id.recyclerViewLeaderBoardData)
 
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
-//        repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//        Generate random finished games. Used to test leaderboard activity
+
+//        var x = 14
+//        while (x > 0) {
+//            repository.saveFinishedGame("Lasor", Random.nextInt(0, 1000), Random.nextInt(0, 1000).toString())
+//            x--
+//        }
 
         recyclerViewLeaderBoardData.layoutManager = LinearLayoutManager(this)
         adapter = LeaderBoardDataRecyclerView(this, repository)
